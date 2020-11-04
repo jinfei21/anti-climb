@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjfei.antibot.dao.StrategyMapper">
+    <sql id="columns">
+        `id`,
+        `model_id`,
+        `code`,
+        `name`,
+        `high`,
+        `mid`,
+        `owner`,
+        `depart`,
+        `email`,
+        `update_by` as updateBy,
+        `update_time` as updateTime,
+        `create_by` as createBy,
+        `create_time` as createTime
+    </sql>
+
+    <select id="selectByCode" resultType="com.yjfei.antibot.bean.StrategyBean">
+        select
+        <include refid="columns"/>
+        from antibot_strategy
+        where code = #{code}
+    </select>
+</mapper>

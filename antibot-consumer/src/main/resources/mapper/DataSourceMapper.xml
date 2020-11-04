@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjfei.antibot.stream.dao.DataSourceMapper">
+    <sql id="columns">
+        id,
+        name,
+        type,
+        `address`,
+        `username`,
+        `password`,
+        `group`,
+        `sub_group` as subGroup
+    </sql>
+    <select id="findById" resultType="com.yjfei.antibot.bean.DataSourceBean">
+        select
+        <include refid="columns"/>
+        from antibot_stream_data_sources
+        where id = #{id}
+    </select>
+</mapper>

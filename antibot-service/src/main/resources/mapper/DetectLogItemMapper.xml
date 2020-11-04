@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjfei.antibot.dao.DetectLogItemMapper">
+    <sql id="columns">
+        `id`,
+        `strategy_id`,
+        `rule_id`,
+        `score`,
+        `update_by` as updateBy,
+        `update_time` as updateTime,
+        `create_by` as createBy,
+        `create_time` as createTime
+    </sql>
+
+    <select id="queryDetectLogItem" resultType="com.yjfei.antibot.bean.DetectLogItemBean">
+        select
+        <include refid="columns"/>
+        from `antibot_detect_log_item`
+        where
+        `create_time` between #{effectDate} and #{expireDate}
+
+        <if test="strategyId != null">
+            and `strategy_id` = #{strategyId}
+        </if>
+
+        <if test="ruleId != null">
+            and `rule_id` = #{ruleId}
+        </if>
+
+    </select>
+</mapper>

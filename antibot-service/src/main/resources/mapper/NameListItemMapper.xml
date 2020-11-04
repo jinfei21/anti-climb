@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjfei.antibot.dao.NameListItemMapper">
+    <sql id="columns">
+        `id`,
+        `namelist_id`,
+        `key`,
+        `reason`,
+        `type`,
+        `effect_date`,
+        `expire_date`,
+        `update_by` as updateBy,
+        `update_time` as updateTime,
+        `create_by` as createBy,
+        `create_time` as createTime
+    </sql>
+
+    <select id="findNameListItem" resultType="com.yjfei.antibot.bean.NameListItemBean">
+        select
+        <include refid="columns"/>
+        from `antibot_namelist_item`
+        where `namelist_id` = #{nameListId} and `key` = #{key}
+    </select>
+
+    <select id="findByNameListId" resultType="com.yjfei.antibot.bean.NameListItemBean">
+        select
+        <include refid="columns"/>
+        from `antibot_namelist_item`
+        where `namelist_id` = #{nameListId}
+    </select>
+
+    <delete id="deleteByNameListId">
+        delete
+        from `antibot_namelist_item`
+        where `namelist_id` = #{nameListId}
+    </delete>
+
+    <select id="queryNameListItem" resultType="com.yjfei.antibot.bean.NameListItemBean">
+        select
+        <include refid="columns"/>
+        from `antibot_namelist_item`
+        where
+        ( `effect_date` between #{effectDate} and #{expireDate}
+        or `expire_date` between #{effectDate} and #{expireDate} )
+        <if test="key != null">
+          and  `key` like #{key}
+        </if>
+        <if test="type != null">
+            and `type` = #{type}
+        </if>
+    </select>
+</mapper>

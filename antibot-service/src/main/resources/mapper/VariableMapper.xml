@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjfei.antibot.dao.VariableMapper">
+    <sql id="columns">
+        `id`,
+        `name`,
+        `type`,
+        `def_value`,
+        `source_id`,
+        `logic_expr`,
+        `key_expr`,
+        `period`,
+        `time_unit`,
+        `update_by` as updateBy,
+        `update_time` as updateTime,
+        `create_by` as createBy,
+        `create_time` as createTime
+    </sql>
+
+    <select id="selectById" resultType="com.yjfei.antibot.bean.VariableBean">
+        select
+        <include refid="columns"/>
+        from `antibot_variable`
+        where `id` = #{id}
+    </select>
+</mapper>

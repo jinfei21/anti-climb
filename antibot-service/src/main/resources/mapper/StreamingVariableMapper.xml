@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjfei.antibot.dao.StreamVariableMapper">
+    <sql id="columns">
+        `id`,
+        `name`,
+        `workflow_id` as workflowId,
+        `type`,
+        `sub_type` as subType,
+        `key_pattern` as keyPattern,
+        `filter_pattern` as filterPattern,
+        `agg_pattern` as aggPattern,
+        `value_type` as valueType,
+        `update_by` as updateBy,
+        `update_time` as updateTime,
+        `create_by` as createBy,
+        `create_time` as createTime
+    </sql>
+
+    <select id="selectByWorkflowId" resultType="com.yjfei.antibot.bean.StreamVariableBean">
+        select
+        <include refid="columns"/>
+        from `antibot_stream_variables`
+        where `workflow_id` = #{workflowId}
+    </select>
+
+    <delete id="deleteByWorkflowId" >
+        delete
+        from `antibot_stream_variables`
+        where `workflow_id` = #{workflowId}
+    </delete>
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjfei.antibot.dao.RuleMapper">
+    <sql id="columns">
+        `id`,
+        `strategy_id`,
+        `name`,
+        `priority`,
+        `score`,
+        `status` as status,
+        `update_by` as updateBy,
+        `update_time` as updateTime,
+        `create_by` as createBy,
+        `create_time` as createTime
+    </sql>
+
+    <select id="selectByStrategyId" resultType="com.yjfei.antibot.bean.RuleBean">
+        select
+        <include refid="columns"/>
+        from `antibot_rule`
+        where strategy_id = #{strategyId}
+    </select>
+
+    <update id="updateStatusByIds">
+        update `antibot_rule`
+        set status=#{state}
+        where id in
+        <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="selectByRuleNameAndStrategyId" resultType="com.yjfei.antibot.bean.RuleBean">
+        select
+        <include refid="columns"/>
+        from `antibot_rule`
+        <if test="name != null">
+            where `name` like #{name}
+        </if>
+        <if test="strategyId != null">
+            where `strategy_id` like #{strategyId}
+        </if>
+    </select>
+
+</mapper>
