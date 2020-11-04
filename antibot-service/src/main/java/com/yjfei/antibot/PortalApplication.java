@@ -11,9 +11,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@MapperScan(value = "com.aihuishou.antibot.dao", annotationClass = Repository.class)
+@MapperScan(value = "com.yjfei.antibot.dao", annotationClass = Repository.class)
 @EnableSwagger2
-@EnableFeignClients(basePackages = { "com.aihuishou" })
+@EnableFeignClients(basePackages = { "com.yjfei" })
 @EnableTransactionManagement(proxyTargetClass = true)
 @Slf4j
 @SuppressWarnings("all")
