@@ -114,10 +114,9 @@ public class TumbleVariable extends RollupVariable<Number> {
                 startKey = String.format("%s%s%s", key, currentTime.getYear(), currentTime.getMonthValue());
                 preTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(context.getTimestamp() - ONE_MONTH), ZoneId.systemDefault());
                 endKey = String.format("%s%s%s", key, preTime.getYear(), preTime.getMonthValue());
+                startIndex = Long.valueOf(String.format("%s%s", startTime.getMonthValue(), formatNum(startTime.getDayOfMonth())));
 
-                startIndex = Long.valueOf(String.format("%s%s", startTime.getMonthValue(), startTime.getDayOfMonth()));
-
-                endIndex = Long.valueOf(String.format("%s%s", currentTime.getMonthValue(), currentTime.getDayOfMonth()));
+                endIndex = Long.valueOf(String.format("%s%s", currentTime.getMonthValue(), formatNum(currentTime.getDayOfMonth())));
 
                 result = calculate(startKey, endKey, startIndex, endIndex, Constants.MAX_DAYS);
                 break;
