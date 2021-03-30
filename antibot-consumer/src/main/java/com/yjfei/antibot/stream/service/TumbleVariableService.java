@@ -53,8 +53,8 @@ public class TumbleVariableService extends RollupVariableService {
             variableDao.incrementHset(String.format("%s%s%s", key, currentTime.getYear(), currentTime.getDayOfYear()), String.format("%s%s", currentTime.getDayOfYear(), formatNum(currentTime.getHour())), variableValue.getValue(), TWO_DAY);
 
             //TODO 插入天
-            variableDao.incrementHset(String.format("%s%s%s", key, currentTime.getYear(), currentTime.getMonthValue()), String.format("%s%s", currentTime.getMonthValue(), currentTime.getDayOfMonth()), variableValue.getValue(), TWO_MONTH);
-
+            variableDao.incrementHset(String.format("%s%s%s", key, currentTime.getYear(), currentTime.getMonthValue()), String.format("%s%s", currentTime.getMonthValue(), formatNum(currentTime.getDayOfMonth())), variableValue.getValue(), TWO_MONTH);
+        
         });
 
     }
