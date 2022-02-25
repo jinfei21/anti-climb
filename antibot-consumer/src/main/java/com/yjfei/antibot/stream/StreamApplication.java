@@ -10,7 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@MapperScan(value = "com.aihuishou.antibot.stream.dao", annotationClass = Repository.class)
+@MapperScan(value = "com.yjfei.antibot.stream.dao", annotationClass = Repository.class)
 @EnableTransactionManagement(proxyTargetClass = true)
 @EnableSwagger2
 @Slf4j
